@@ -16,6 +16,8 @@ Asegúrate de tener instalado en tu máquina:
 
 ## 🛠 Instalación del Proyecto
 
+## Hay una colección de Postman para utilizar los endpoints 
+
 ### 1️⃣ Clonar el repositorio
 ```sh
 git clone https://github.com/iamLayzo/twitterClone.git
