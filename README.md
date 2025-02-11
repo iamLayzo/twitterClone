@@ -1,66 +1,195 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Proyecto Laravel con MySQL en Docker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto utiliza **Laravel**, **MySQL** y **Docker** para un entorno de desarrollo optimizado. Sigue los pasos para instalarlo y configurarlo correctamente.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Requisitos previos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Asegúrate de tener instalado en tu máquina:
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Node.js y yarn](https://nodejs.org/)
+- [Composer](https://getcomposer.org/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠 Instalación del Proyecto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1️⃣ Clonar el repositorio
+```sh
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2️⃣ Crear el archivo `.env`
+Copia el archivo de configuración de ejemplo:
+```sh
+cp .env.example .env
+```
+Abre `.env` y asegúrate de que la configuración de la base de datos sea:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=secret
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3️⃣ Instalar dependencias PHP y Node.js
+```sh
+composer install
+yarn install
+```
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🐳 **Configurar y ejecutar Docker**
 
-### Premium Partners
+### 4️⃣ Levantar los contenedores con Docker
+Ejecuta el siguiente comando para iniciar el contenedor de MySQL:
+```sh
+docker-compose up -d
+```
+📌 **Esto hará lo siguiente:**
+- Crea un contenedor con MySQL.
+- Expone el puerto `3306` para conexiones externas.
+- Usa un volumen persistente (`dbdata`).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Para verificar que el contenedor está corriendo:
+```sh
+docker ps
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📂 **Base de datos y Migraciones**
 
-## Code of Conduct
+### 5️⃣ Ejecutar migraciones de Laravel
+Después de que el contenedor de MySQL esté listo, ejecuta:
+```sh
+php artisan migrate
+```
+Si quieres cargar datos iniciales (seeders), usa:
+```sh
+php artisan migrate --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🚀 Configuración de la Base de Datos
 
-## Security Vulnerabilities
+#### Ejecutar Migraciones y Seeders
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Para configurar la base de datos y poblarla con datos iniciales, sigue estos pasos:
 
-## License
+1. **Ejecutar Migraciones**: Esto creará las tablas necesarias en tu base de datos.
+   
+   ```sh
+   php artisan migrate
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Ejecutar Seeders**: Esto llenará la base de datos con datos de ejemplo, incluyendo usuarios con la contraseña `123456`.
+
+   ```sh
+   php artisan db:seed
+   ```
+
+   Alternativamente, puedes ejecutar ambos comandos juntos para reiniciar la base de datos y poblarla de nuevo:
+
+   ```sh
+   php artisan migrate:fresh --seed
+   ```
+
+   ⚠️ **Nota**: El comando `migrate:fresh` eliminará todas las tablas de la base de datos antes de volver a crearlas, por lo que se perderán todos los datos existentes.
+
+#### Verificar Usuarios en la Base de Datos
+
+Para ver los usuarios creados y verificar que la contraseña es `123456`, puedes acceder a la base de datos MySQL dentro del contenedor Docker:
+
+1. **Acceder al Contenedor Docker**: Ejecuta el siguiente comando para acceder al contenedor de la base de datos:
+
+   ```sh
+   docker exec -it laravel_db mysql -u root -p
+   ```
+
+   Cuando se te pida, ingresa la contraseña de MySQL. Si no la has cambiado, la contraseña por defecto es `secrete` o la que hayas configurado en tu archivo Docker.
+
+2. **Seleccionar la Base de Datos**: Una vez dentro de MySQL, selecciona la base de datos de Laravel:
+
+   ```sql
+   USE laravel;
+   ```
+
+3. **Verificar Usuarios**: Ejecuta el siguiente comando para ver los usuarios:
+
+   ```sql
+   SELECT * FROM users;
+   ```
+
+   Esto mostrará una lista de usuarios creados por el seeder, todos con la contraseña `123456`.
+
+Con estos pasos, podrás verificar que los usuarios se han creado correctamente y acceder a la base de datos para inspeccionar los datos.
+
+---
+
+## 🔥 **Ejecutar el proyecto**
+
+### 6️⃣ Iniciar el servidor de Laravel
+```sh
+php artisan serve
+```
+
+### 7️⃣ Iniciar Vite (React/Vue con TailwindCSS)
+```sh
+yarn run dev
+```
+
+---
+
+## ⚙️ **Comandos útiles**
+
+✅ **Parar contenedores sin eliminar datos:**
+```sh
+docker-compose down
+```
+
+✅ **Eliminar contenedores y borrar datos (⚠️ Esto eliminará la base de datos):**
+```sh
+docker-compose down -v
+```
+
+✅ **Acceder a MySQL dentro del contenedor:**
+```sh
+docker exec -it laravel_db mysql -u laravel -p
+# Ingresar la contraseña: secret
+```
+
+✅ **Reiniciar Laravel y Vite:**
+```sh
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+yarn run dev
+```
+
+✅ **Actualizar dependencias:**
+```sh
+composer update
+yarn update
+```
+
+---
+
+## 🎯 **Conclusión**
+Con estos pasos, tendrás tu aplicación Laravel corriendo con MySQL en Docker, junto con su frontend en Vite. 🚀
+
+---
+
+### 📢 **Dudas o problemas?**
+Si tienes algún error, revisa los logs con:
+```sh
+docker logs laravel_db
+```
+Si necesitas más ayuda, ¡avísame! 😃
+
