@@ -181,9 +181,6 @@ yarn update
 
 ---
 
-## 🎯 **Conclusión**
-Con estos pasos, tendrás tu aplicación Laravel corriendo con MySQL en Docker, junto con su frontend en Vite. 🚀
-
 ---
 
 ### 📢 **Dudas o problemas?**
