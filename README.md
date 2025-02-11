@@ -18,8 +18,8 @@ Asegúrate de tener instalado en tu máquina:
 
 ### 1️⃣ Clonar el repositorio
 ```sh
-git clone https://github.com/tu_usuario/tu_repositorio.git
-cd tu_repositorio
+git clone https://github.com/iamLayzo/twitterClone.git
+cd twitterClone
 ```
 
 ### 2️⃣ Crear el archivo `.env`
